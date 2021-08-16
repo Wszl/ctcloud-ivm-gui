@@ -10,10 +10,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
@@ -45,7 +42,7 @@ public class MainController {
     private ServiceRequests requests;
 
     @FXML
-    private ListView listView;
+    private TextArea textArea;
 
     public MainController() {
         IVMConfig config = new IVMConfig(
@@ -412,14 +409,7 @@ public class MainController {
     }
 
     private void showResponse(Object r) {
-        if (r instanceof List) {
-            ((List<?>) r).forEach(e -> {
-                listView.getItems().add(JSONObject.toJSONString(e));
-            });
-
-        } else {
-            listView.getItems().add(JSONObject.toJSONString(r));
-        }
+       textArea.setText(JSONObject.toJSONString(r));
     }
 
 
