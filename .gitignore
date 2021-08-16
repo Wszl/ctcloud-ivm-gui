@@ -1,0 +1,4 @@
+target/
+.idea/
+smartclould-ivm-gui.iml
+config.ini
