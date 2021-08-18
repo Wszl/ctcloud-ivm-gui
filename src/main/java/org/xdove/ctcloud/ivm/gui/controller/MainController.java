@@ -145,9 +145,9 @@ public class MainController {
             Map<String, Object> r = requests.updateVideoTask(
                     getNullableInt(updateTaskExtractionFrequency),
                     getNullableText(updateTaskName),
+                    getNullableText(updateTaskTaskId),
                     getNullableText(updateTaskUrl),
-                    getNullableText(updateTaskDeviceNum),
-                    getNullableText(updateTaskTaskId)
+                    getNullableText(updateTaskDeviceNum)
             );
             showResponse(r);
         } catch (Exception e) {
