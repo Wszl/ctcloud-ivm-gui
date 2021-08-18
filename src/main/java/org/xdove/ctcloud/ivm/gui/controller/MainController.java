@@ -143,7 +143,7 @@ public class MainController {
     public void updateVideoTask(ActionEvent actionEvent) {
         try {
             Map<String, Object> r = requests.updateVideoTask(
-                    getNullableInt(createTaskExtractionFrequency),
+                    getNullableInt(updateTaskExtractionFrequency),
                     getNullableText(updateTaskName),
                     getNullableText(updateTaskUrl),
                     getNullableText(updateTaskDeviceNum),
@@ -184,7 +184,7 @@ public class MainController {
     public void queryVideoTask(ActionEvent actionEvent) {
         try {
             Map<String, Object> r = requests.queryVideoTask(
-                    getNullableText(deleteTaskTaskId),
+                    getNullableText(queryTaskTaskId),
                     getNullableInt(queryTaskPageSize),
                     getNullableInt(queryTaskPageNum)
             );
