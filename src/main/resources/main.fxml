@@ -225,9 +225,9 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" onAction="#queryVideoScene" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                      <Button mnemonicParsing="false" onAction="#stopVideoTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                       <Label text="taskId" />
-                                                      <TextField fx:id="queryTaskSceneTaskId" GridPane.columnIndex="1" />
+                                                      <TextField fx:id="stopTaskTaskId" GridPane.columnIndex="1" />
                                                    </children>
                                                 </GridPane>
                                              </content>
@@ -247,7 +247,7 @@
                                                    <children>
                                                       <Button mnemonicParsing="false" onAction="#queryVideoScene" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                       <Label text="taskId" />
-                                                      <TextField fx:id="stopTaskTaskId1" GridPane.columnIndex="1" />
+                                                      <TextField fx:id="queryTaskSceneTaskId" GridPane.columnIndex="1" />
                                                    </children>
                                                 </GridPane>
                                              </content>
