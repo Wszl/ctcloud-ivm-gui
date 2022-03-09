@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.xdove.ctcloud.ivm.gui.ConfigUtils;
@@ -23,7 +24,7 @@ public class PreferencesController {
     public static final String KEY_CONFIG_PREFERENCES_SECRET = "secret";
 
     @FXML
-    private TextField preferencesServerUrl;
+    private TextArea preferencesServerUrl;
     @FXML
     private TextField preferencesAppkey;
     @FXML
@@ -34,5 +35,7 @@ public class PreferencesController {
         ConfigUtils.setConfig(KEY_CONFIG_PREFERENCES_APPKEY, preferencesAppkey.getText());
         ConfigUtils.setConfig(KEY_CONFIG_PREFERENCES_SECRET, preferencesSecret.getText());
     }
+
+
 
 }

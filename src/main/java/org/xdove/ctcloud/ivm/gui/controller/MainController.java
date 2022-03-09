@@ -1,31 +1,25 @@
 package org.xdove.ctcloud.ivm.gui.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sun.javafx.stage.StageHelper;
-import javafx.application.Application;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xdove.ctcloud.ivm.IVMConfig;
 import org.xdove.ctcloud.ivm.ServiceRequests;
-import org.xdove.ctcloud.ivm.entity.KitchenCreateTaskAnalysisRule;
-import org.xdove.ctcloud.ivm.entity.KitchenUpdateTaskAnalysisRule;
+import org.xdove.ctcloud.ivm.entity.CreateTaskAnalysisRule;
 import org.xdove.ctcloud.ivm.gui.ConfigUtils;
 import org.xdove.ctcloud.ivm.gui.ErrorUtils;
 
-import javax.xml.soap.Text;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -69,7 +63,7 @@ public class MainController {
     }
 
     private void initConfig(Scene scene) {
-        final TextField preferencesServerUrl = (TextField) scene.lookup("#preferencesServerUrl");
+        final TextArea preferencesServerUrl = (TextArea) scene.lookup("#preferencesServerUrl");
         preferencesServerUrl.setText(ConfigUtils.getConfig(PreferencesController.KEY_CONFIG_PREFERENCES_SERVER_URL));
         final TextField preferencesAppkey = (TextField) scene.lookup("#preferencesAppkey");
         preferencesAppkey.setText(ConfigUtils.getConfig(PreferencesController.KEY_CONFIG_PREFERENCES_APPKEY));
@@ -96,30 +90,41 @@ public class MainController {
         return parseInt(getNullableText(textField));
     }
 
-    /*************************
-     *  VideoTask
-     */
 
-    @FXML
-    private TextField createTaskExtractionFrequency;
-    @FXML
-    private TextField createTaskName;
-    @FXML
-    private TextField createTaskUrl;
+    /********************************************
+     *  Task
+     *
+     *********************************/
+
     @FXML
     private TextField createTaskDeviceNum;
     @FXML
+    private TextField createTaskUrl;
+    @FXML
     private TextField createTaskType;
+    @FXML
+    private TextField createTaskAnalysisRule;
+    @FXML
+    private TextField createTaskSceneBase64;
+    @FXML
+    private TextField createTaskName;
 
     @FXML
-    public void createVideoTask(ActionEvent actionEvent) {
+    public void createTask(ActionEvent actionEvent) {
+        Object rule = getNullableText(createTaskAnalysisRule);
+        if (Objects.nonNull(rule)) {
+            CreateTaskAnalysisRule r = new CreateTaskAnalysisRule();
+            r = JSONObject.parseObject(rule.toString(), CreateTaskAnalysisRule.class);
+            rule = r;
+        }
         try {
-            Map<String, Object> r = requests.createVideoTask(
-                    getNullableInt(createTaskExtractionFrequency),
-                    getNullableText(createTaskName),
-                    getNullableText(createTaskUrl),
+            Map<String, Object> r = requests.createTask(
                     getNullableText(createTaskDeviceNum),
-                    getNullableInt(createTaskType)
+                    getNullableText(createTaskUrl),
+                    getNullableInt(createTaskType),
+                    Objects.nonNull(rule) ? ((CreateTaskAnalysisRule)rule) : null,
+                    getNullableText(createTaskSceneBase64),
+                    getNullableText(createTaskName)
             );
             showResponse(r);
         } catch (Exception e) {
@@ -129,25 +134,34 @@ public class MainController {
     }
 
     @FXML
-    private TextField updateTaskExtractionFrequency;
-    @FXML
-    private TextField updateTaskName;
+    private TextField updateTaskDeviceNum;
     @FXML
     private TextField updateTaskUrl;
     @FXML
-    private TextField updateTaskDeviceNum;
+    private TextField updateTaskAnalysisRule;
     @FXML
-    private TextField updateTaskTaskId;
+    private TextField updateTaskSceneBase64;
+    @FXML
+    private TextField updateTaskName;
+    @FXML
+    private TextField updateTaskId;
 
     @FXML
-    public void updateVideoTask(ActionEvent actionEvent) {
+    public void updateTask(ActionEvent actionEvent) {
+        Object rule = getNullableText(updateTaskAnalysisRule);
+        if (Objects.nonNull(rule)) {
+            CreateTaskAnalysisRule r = new CreateTaskAnalysisRule();
+            r = JSONObject.parseObject(rule.toString(), CreateTaskAnalysisRule.class);
+            rule = r;
+        }
         try {
-            Map<String, Object> r = requests.updateVideoTask(
-                    getNullableInt(updateTaskExtractionFrequency),
-                    getNullableText(updateTaskName),
-                    getNullableText(updateTaskTaskId),
+            Map<String, Object> r = requests.updateTask(
+                    getNullableText(updateTaskDeviceNum),
                     getNullableText(updateTaskUrl),
-                    getNullableText(updateTaskDeviceNum)
+                    getNullableText(updateTaskName),
+                    Objects.nonNull(rule) ? ((CreateTaskAnalysisRule)rule) : null,
+                    getNullableText(updateTaskSceneBase64),
+                    getNullableText(updateTaskId)
             );
             showResponse(r);
         } catch (Exception e) {
@@ -160,9 +174,9 @@ public class MainController {
     private TextField deleteTaskTaskId;
 
     @FXML
-    public void deleteVideoTask(ActionEvent actionEvent) {
+    public void deleteTask(ActionEvent actionEvent) {
         try {
-            Map<String, Object> r = requests.deleteVideoTask(
+            Map<String, Object> r = requests.deleteTask(
                     getNullableText(deleteTaskTaskId)
             );
             showResponse(r);
@@ -179,162 +193,13 @@ public class MainController {
     @FXML
     private TextField queryTaskPageNum;
 
-
     @FXML
-    public void queryVideoTask(ActionEvent actionEvent) {
+    public void queryTask(ActionEvent actionEvent) {
         try {
-            Map<String, Object> r = requests.queryVideoTask(
+            Map<String, Object> r = requests.queryTask(
                     getNullableText(queryTaskTaskId),
                     getNullableInt(queryTaskPageSize),
                     getNullableInt(queryTaskPageNum)
-            );
-            showResponse(r);
-        } catch (Exception e) {
-            log.warn(e);
-            ErrorUtils.alert(e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
-    private TextField startTaskTaskId;
-
-    @FXML
-    public void startVideoTask(ActionEvent actionEvent) {
-        try {
-            Map<String, Object> r = requests.startVideoTask(
-                    getNullableText(startTaskTaskId)
-            );
-            showResponse(r);
-        } catch (Exception e) {
-            log.warn(e);
-            ErrorUtils.alert(e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
-    private TextField stopTaskTaskId;
-
-    @FXML
-    public void stopVideoTask(ActionEvent actionEvent) {
-        try {
-            Map<String, Object> r = requests.stopVideoTask(
-                    getNullableText(stopTaskTaskId)
-            );
-            showResponse(r);
-        } catch (Exception e) {
-            log.warn(e);
-            ErrorUtils.alert(e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
-    private TextField queryTaskSceneTaskId;
-
-    @FXML
-    public void queryVideoScene(ActionEvent actionEvent) {
-        try {
-            Map<String, Object> r = requests.queryVideoScene(
-                    getNullableText(queryTaskSceneTaskId)
-            );
-            showResponse(r);
-        } catch (Exception e) {
-            log.warn(e);
-            ErrorUtils.alert(e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
-    private TextField createKitchenTaskRule;
-    @FXML
-    private TextField createKitchenTaskSceneBase64;
-    @FXML
-    private TextField createKitchenTaskName;
-    @FXML
-    private TextField createKitchenTaskVideoTaskId;
-
-    @FXML
-    public void createKitchenTask(ActionEvent actionEvent) {
-        Object rule = getNullableText(createKitchenTaskRule);
-        if (Objects.nonNull(rule)) {
-            KitchenCreateTaskAnalysisRule r = new KitchenCreateTaskAnalysisRule();
-            r = JSONObject.parseObject(rule.toString(), KitchenCreateTaskAnalysisRule.class);
-            rule = r;
-        }
-        try {
-            Map<String, Object> r = requests.createKitchenScene(
-                    Objects.nonNull(rule) ? ((KitchenCreateTaskAnalysisRule)rule) : null,
-                    getNullableText(createKitchenTaskSceneBase64),
-                    getNullableText(createKitchenTaskName),
-                    getNullableText(createKitchenTaskVideoTaskId)
-            );
-            showResponse(r);
-        } catch (Exception e) {
-            log.warn(e);
-            ErrorUtils.alert(e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
-    private TextField updateKitchenTaskRule;
-    @FXML
-    private TextField updateKitchenTaskSceneBase64;
-    @FXML
-    private TextField updateKitchenTaskName;
-    @FXML
-    private TextField updateKitchenTaskTaskId;
-
-    @FXML
-    public void updateKitchenTask(ActionEvent actionEvent) {
-        Object rule = getNullableText(updateKitchenTaskRule);
-        if (Objects.nonNull(rule)) {
-            KitchenUpdateTaskAnalysisRule r = new KitchenUpdateTaskAnalysisRule();
-            r = JSONObject.parseObject(rule.toString(), KitchenUpdateTaskAnalysisRule.class);
-            rule = r;
-        }
-        try {
-            Map<String, Object> r = requests.updateKitchenScene(
-                    Objects.nonNull(rule) ? ((KitchenUpdateTaskAnalysisRule)rule) : null,
-                    getNullableText(updateKitchenTaskSceneBase64),
-                    getNullableText(updateKitchenTaskName),
-                    getNullableText(updateKitchenTaskTaskId)
-            );
-            showResponse(r);
-        } catch (Exception e) {
-            log.warn(e);
-            ErrorUtils.alert(e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
-    private TextField deleteKitchenTaskTaskId;
-
-    @FXML
-    public void deleteKitchenTask(ActionEvent actionEvent) {
-        try {
-            Map<String, Object> r = requests.deleteKitchenScene(
-                    getNullableText(deleteKitchenTaskTaskId)
-            );
-            showResponse(r);
-        } catch (Exception e) {
-            log.warn(e);
-            ErrorUtils.alert(e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
-    private TextField queryKitchenTaskTaskId;
-    @FXML
-    private TextField queryKitchenTaskPageSize;
-    @FXML
-    private TextField queryKitchenTaskPageNum;
-
-    @FXML
-    public void queryKitchenTask(ActionEvent actionEvent) {
-        try {
-            Map<String, Object> r = requests.queryKitchenScene(
-                    getNullableText(queryKitchenTaskTaskId),
-                    getNullableInt(queryKitchenTaskPageSize),
-                    getNullableInt(queryKitchenTaskPageNum)
             );
             showResponse(r);
         } catch (Exception e) {
@@ -363,6 +228,8 @@ public class MainController {
     }
 
     @FXML
+    private TextField updateSubscribeId;
+    @FXML
     private TextField updateSubscribeReturnUrl;
     @FXML
     private TextField updateSubscribeCodes;
@@ -371,6 +238,7 @@ public class MainController {
     public void updateSubscribe(ActionEvent actionEvent) {
         try {
             Map<String, Object> r = requests.updateSubscribe(
+                    getNullableText(updateSubscribeId),
                     getNullableText(updateSubscribeReturnUrl),
                     getNullableText(updateSubscribeCodes)
             );
@@ -408,8 +276,34 @@ public class MainController {
         }
     }
 
+    @FXML
+    private TextField querySceneEnterpriseUser;
+    @FXML
+    private TextField querySceneTaskId;
+    @FXML
+    private TextField querySceneDeviceNum;
+
+    @FXML
+    public void queryScene(ActionEvent actionEvent) {
+        try {
+            Map<String, Object> r = requests.queryScene(
+                    getNullableText(querySceneEnterpriseUser),
+                    getNullableText(querySceneTaskId),
+                    getNullableText(querySceneDeviceNum)
+            );
+            showResponse(r);
+        } catch (Exception e) {
+            log.warn(e);
+            ErrorUtils.alert(e.getLocalizedMessage());
+        }
+    }
+
     private void showResponse(Object r) {
-       textArea.setText(JSONObject.toJSONString(r));
+       textArea.setText(JSONObject.toJSONString(r,
+               SerializerFeature.PrettyFormat,
+               SerializerFeature.WriteMapNullValue,
+               SerializerFeature.WriteDateUseDateFormat
+               ));
     }
 
 

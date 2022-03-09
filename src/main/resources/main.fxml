@@ -97,19 +97,22 @@
                                                       <RowConstraints />
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" onAction="#createVideoTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                      <Label text="type" GridPane.rowIndex="5" />
-                                                      <Label text="deviceNum" GridPane.rowIndex="4" />
-                                                      <Label text="url" GridPane.rowIndex="2" />
-                                                      <Label text="name" GridPane.rowIndex="1" />
-                                                      <Label text="extractionFrequency" />
-                                                      <TextField fx:id="createTaskExtractionFrequency" GridPane.columnIndex="1" />
-                                                      <TextField fx:id="createTaskName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                      <TextField fx:id="createTaskUrl" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <TextField fx:id="createTaskDeviceNum" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                      <TextField fx:id="createTaskType" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                      <Button mnemonicParsing="false" onAction="#createTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                                      <Label text="SceneBase64" GridPane.rowIndex="5" />
+                                                      <Label text="AnalysisRule" GridPane.rowIndex="4" />
+                                                      <Label text="Type" GridPane.rowIndex="2" />
+                                                      <Label text="Url" GridPane.rowIndex="1" />
+                                                      <Label alignment="TOP_LEFT" text="DeviceNum" />
+                                                      <TextField fx:id="createTaskDeviceNum" GridPane.columnIndex="1" />
+                                                      <TextField fx:id="createTaskUrl" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="createTaskType" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                      <TextField fx:id="createTaskAnalysisRule" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                      <TextField fx:id="createTaskName" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                      <Label text="Name" GridPane.rowIndex="6" />
+                                                      <TextField fx:id="createTaskSceneBase64" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                                    </children>
                                                 </GridPane>
                                              </content>
@@ -129,19 +132,22 @@
                                                       <RowConstraints />
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" onAction="#updateVideoTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                      <Label text="taskId" GridPane.rowIndex="5" />
-                                                      <Label text="deviceNum" GridPane.rowIndex="4" />
-                                                      <Label text="url" GridPane.rowIndex="2" />
-                                                      <Label text="name" GridPane.rowIndex="1" />
-                                                      <Label text="extractionFrequency" />
-                                                      <TextField fx:id="updateTaskExtractionFrequency" GridPane.columnIndex="1" />
-                                                      <TextField fx:id="updateTaskName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                      <TextField fx:id="updateTaskUrl" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <TextField fx:id="updateTaskDeviceNum" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                      <TextField fx:id="updateTaskTaskId" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                      <Button mnemonicParsing="false" onAction="#updateTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                                      <Label text="Name" GridPane.rowIndex="5" />
+                                                      <Label text="SceneBase64" GridPane.rowIndex="4" />
+                                                      <Label text="AnalysisRule" GridPane.rowIndex="2" />
+                                                      <Label text="Url" GridPane.rowIndex="1" />
+                                                      <Label text="DeviceNum" />
+                                                      <TextField fx:id="updateTaskDeviceNum" GridPane.columnIndex="1" />
+                                                      <TextField fx:id="updateTaskUrl" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="updateTaskAnalysisRule" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                      <TextField fx:id="updateTaskSceneBase64" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                      <TextField fx:id="updateTaskName" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                      <Label text="TaskId" GridPane.rowIndex="6" />
+                                                      <TextField fx:id="updateTaskId" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                                    </children>
                                                 </GridPane>
                                              </content>
@@ -159,7 +165,7 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" onAction="#deleteVideoTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                      <Button mnemonicParsing="false" onAction="#deleteTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                       <Label text="taskId" />
                                                       <TextField fx:id="deleteTaskTaskId" GridPane.columnIndex="1" />
                                                    </children>
@@ -181,7 +187,7 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" onAction="#queryVideoTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                      <Button mnemonicParsing="false" onAction="#queryTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                                       <Label text="taskId" GridPane.rowIndex="2" />
                                                       <TextField fx:id="queryTaskTaskId" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                       <Label text="pageSize" />
@@ -192,7 +198,7 @@
                                                 </GridPane>
                                              </content>
                                           </Tab>
-                                          <Tab text="StartTask">
+                                          <Tab text="QueryScene">
                                              <content>
                                                 <GridPane>
                                                    <columnConstraints>
@@ -202,52 +208,18 @@
                                                    <rowConstraints>
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" />
                                                       <RowConstraints />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" onAction="#startVideoTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Label text="taskId" />
-                                                      <TextField fx:id="startTaskTaskId" GridPane.columnIndex="1" />
-                                                   </children>
-                                                </GridPane>
-                                             </content>
-                                          </Tab>
-                                          <Tab text="StopTask">
-                                             <content>
-                                                <GridPane>
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                                      <RowConstraints />
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <Button mnemonicParsing="false" onAction="#stopVideoTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Label text="taskId" />
-                                                      <TextField fx:id="stopTaskTaskId" GridPane.columnIndex="1" />
-                                                   </children>
-                                                </GridPane>
-                                             </content>
-                                          </Tab>
-                                          <Tab text="QueryVideoScene">
-                                             <content>
-                                                <GridPane>
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                                      <RowConstraints />
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <Button mnemonicParsing="false" onAction="#queryVideoScene" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Label text="taskId" />
-                                                      <TextField fx:id="queryTaskSceneTaskId" GridPane.columnIndex="1" />
+                                                      <Button mnemonicParsing="false" onAction="#queryScene" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                      <Label text="enterpriseUser" />
+                                                      <TextField fx:id="querySceneEnterpriseUser" GridPane.columnIndex="1" />
+                                                      <Label text="taskId" GridPane.rowIndex="2" />
+                                                      <Label text="DeviceNum" GridPane.rowIndex="3" />
+                                                      <TextField fx:id="querySceneTaskId" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                      <TextField fx:id="querySceneDeviceNum" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                    </children>
                                                 </GridPane>
                                              </content>
@@ -260,125 +232,6 @@
                         </AnchorPane>
                      </content>
                 </TitledPane>
-                <TitledPane animated="false" text="KitchenTask">
-                     <content>
-                        <AnchorPane>
-                           <children>
-                              <ScrollPane>
-                                 <content>
-                                    <TabPane>
-                                       <tabs>
-                                          <Tab text="CreateKitchenTask">
-                                             <content>
-                                                <GridPane>
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                                      <RowConstraints />
-                                                      <RowConstraints />
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <Button mnemonicParsing="false" onAction="#createKitchenTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                      <Label text="videoTaskId" GridPane.rowIndex="4" />
-                                                      <Label text="name" GridPane.rowIndex="2" />
-                                                      <Label text="sceneBase64" GridPane.rowIndex="1" />
-                                                      <Label text="rule" />
-                                                      <TextField fx:id="createKitchenTaskRule" GridPane.columnIndex="1" />
-                                                      <TextField fx:id="createKitchenTaskSceneBase64" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                      <TextField fx:id="createKitchenTaskName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <TextField fx:id="createKitchenTaskVideoTaskId" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                   </children>
-                                                </GridPane>
-                                             </content>
-                                          </Tab>
-                                          <Tab text="UpdateKitchenTask">
-                                             <content>
-                                                <GridPane>
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                                      <RowConstraints />
-                                                      <RowConstraints />
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <Button mnemonicParsing="false" onAction="#updateKitchenTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                      <Label text="taskId" GridPane.rowIndex="4" />
-                                                      <Label text="name" GridPane.rowIndex="2" />
-                                                      <Label text="sceneBase64" GridPane.rowIndex="1" />
-                                                      <Label text="rule" />
-                                                      <TextField fx:id="updateKitchenTaskRule" GridPane.columnIndex="1" />
-                                                      <TextField fx:id="updateKitchenTaskSceneBase64" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                      <TextField fx:id="updateKitchenTaskName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <TextField fx:id="updateKitchenTaskTaskId" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                   </children>
-                                                </GridPane>
-                                             </content>
-                                          </Tab>
-                                          <Tab text="DeleteTask">
-                                             <content>
-                                                <GridPane>
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                                      <RowConstraints />
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <Button mnemonicParsing="false" onAction="#deleteKitchenTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Label text="taskId" />
-                                                      <TextField fx:id="deleteKitchenTaskTaskId" GridPane.columnIndex="1" />
-                                                   </children>
-                                                </GridPane>
-                                             </content>
-                                          </Tab>
-                                          <Tab text="QueryTask">
-                                             <content>
-                                                <GridPane>
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                                      <RowConstraints />
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <Button mnemonicParsing="false" onAction="#queryKitchenTask" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                      <Label text="taskId" />
-                                                      <TextField fx:id="queryKitchenTaskTaskId" GridPane.columnIndex="1" />
-                                                      <Label text="pageSize" GridPane.rowIndex="1" />
-                                                      <Label text="pageNum" GridPane.rowIndex="2" />
-                                                      <TextField fx:id="queryKitchenTaskPageSize" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                      <TextField fx:id="queryKitchenTaskPageNum" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                   </children>
-                                                </GridPane>
-                                             </content>
-                                          </Tab>
-                                       </tabs>
-                                    </TabPane>
-                                 </content>
-                              </ScrollPane>
-                           </children>
-                        </AnchorPane>
-                     </content></TitledPane>
                 <TitledPane animated="false" text="Subscribe">
                      <content>
                         <AnchorPane>
