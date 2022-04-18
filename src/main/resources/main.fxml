@@ -273,15 +273,18 @@
                                                    <rowConstraints>
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" />
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
                                                       <RowConstraints />
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" onAction="#updateSubscribe" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                      <Label text="codes" GridPane.rowIndex="1" />
-                                                      <Label text="returnUrl" />
-                                                      <TextField fx:id="updateSubscribeReturnUrl" GridPane.columnIndex="1" />
-                                                      <TextField fx:id="updateSubscribeCodes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <Button mnemonicParsing="false" onAction="#updateSubscribe" text="Request" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                      <Label text="codes" GridPane.rowIndex="2" />
+                                                      <Label text="returnUrl" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="updateSubscribeReturnUrl" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="updateSubscribeCodes" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                      <Label text="subId" />
+                                                      <TextField fx:id="updateSubscribeId" GridPane.columnIndex="1" />
                                                    </children>
                                                 </GridPane>
                                              </content>
